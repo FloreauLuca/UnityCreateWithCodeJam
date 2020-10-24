@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretsWeapons : MonoBehaviour
+public class SecretWeaponsManager : MonoBehaviour
 {
+    [SerializeField] private List<SecretWeapon> secretWeapons;
     // Start is called before the first frame update
     void Start()
     {

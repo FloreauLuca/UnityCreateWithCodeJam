@@ -95,6 +95,8 @@ public class Player : MonoBehaviour
         color = Color.red;
         color.a = 0.5f;
         Gizmos.color = color;
-        Gizmos.DrawCube(transform.position + currentWeapon.boxOffset.y * transform.up + currentWeapon.boxOffset.x * transform.right, currentWeapon.boxSize);
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position + currentWeapon.boxOffset.y * transform.up + currentWeapon.boxOffset.x * transform.right, transform.rotation, transform.lossyScale);
+        Gizmos.matrix = rotationMatrix;
+        Gizmos.DrawCube(Vector3.zero, currentWeapon.boxSize);
     }
 }
