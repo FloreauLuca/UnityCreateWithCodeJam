@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     private GameManager gameManager;
 
+    private SpriteRenderer spriteRenderer;
+
+
     [Header("Mouvement")]
     private Rigidbody2D rigidbody;
     [SerializeField] private float speed = 5.0f;
@@ -14,12 +17,17 @@ public class Player : MonoBehaviour
     [Header("Weapon")]
     [SerializeField] private SOWeapon currentWeapon;
     [SerializeField] private LayerMask enemyLayerMask;
+    private float attackTimer = 0.0f;
+
+    [Header("Stats")]
+    [SerializeField] private int life = 100;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         rigidbody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -34,6 +42,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Attack"))
         {
             Attack();
+            StartCoroutine(AttackAnim());
         }
     }
 
@@ -51,6 +60,33 @@ public class Player : MonoBehaviour
     public void CollectWeapon(SOWeapon weapon)
     {
         currentWeapon = weapon;
+    }
+
+    public void Hit(int damage)
+    {
+        life -= damage;
+        if (life > 0)
+        {
+            StartCoroutine(HitAnim());
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator HitAnim()
+    {
+        spriteRenderer.color = Color.red; ;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = Color.green;
+    }
+
+    IEnumerator AttackAnim()
+    {
+        spriteRenderer.color = Color.blue; ;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = Color.green;
     }
 
     void OnDrawGizmos()

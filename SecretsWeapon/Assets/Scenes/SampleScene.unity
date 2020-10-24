@@ -195,7 +195,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 041315995d83fdb42a0e309540bf9b20, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.07456994, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     coolDown: 1
     prefab: {fileID: 6515692719329122392, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
     spawnPoint: {fileID: 135052061}
-    waveFinish: {fileID: 1220410574}
+    waveFinish: {fileID: 660214476}
   - totalEnnemies: 15
     enemiesGroup: 1
     coolDown: 1
@@ -1887,6 +1887,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  life: 100
 --- !u!50 &881336879
 Rigidbody2D:
   serializedVersion: 4
@@ -9488,14 +9489,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 6515692719329122392, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6515692719329122393, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6515692719329122396, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.81
@@ -9539,10 +9532,6 @@ PrefabInstance:
     - target: {fileID: 6515692719329122396, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6515692719764590441, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
