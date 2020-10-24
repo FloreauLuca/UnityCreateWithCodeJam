@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6515692719329122395}
   - component: {fileID: 6515692719329122394}
   - component: {fileID: 6515692719329122393}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeaccde0524e8ac4fb6f180750b7c6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+  angleOffset: -90
 --- !u!1 &6515692719764590441
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6515692719764590442}
   - component: {fileID: 6515692719764590443}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
