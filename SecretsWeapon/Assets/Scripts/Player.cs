@@ -38,9 +38,10 @@ public class Player : MonoBehaviour
         Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + angleOffset;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        if (Input.GetButtonDown("Attack"))
+        attackTimer += Time.deltaTime;
+        if (Input.GetButtonDown("Attack") && attackTimer > currentWeapon.cooldown)
         {
+            attackTimer = 0f;
             Attack();
             StartCoroutine(AttackAnim());
         }
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour
     public void CollectWeapon(SOWeapon weapon)
     {
         currentWeapon = weapon;
+        spriteRenderer.sprite = currentWeapon.weaponSprite;
     }
 
     public void Hit(int damage)
@@ -79,14 +81,14 @@ public class Player : MonoBehaviour
     {
         spriteRenderer.color = Color.red; ;
         yield return new WaitForSeconds(0.2f);
-        spriteRenderer.color = Color.green;
+        spriteRenderer.color = Color.white;
     }
 
     IEnumerator AttackAnim()
     {
-        spriteRenderer.color = Color.blue; ;
+        spriteRenderer.sprite = currentWeapon.weaponAttackSprite;
         yield return new WaitForSeconds(0.2f);
-        spriteRenderer.color = Color.green;
+        spriteRenderer.sprite = currentWeapon.weaponSprite;
     }
 
     void OnDrawGizmos()

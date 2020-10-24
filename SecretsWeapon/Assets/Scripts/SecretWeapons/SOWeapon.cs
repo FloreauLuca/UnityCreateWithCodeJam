@@ -11,14 +11,17 @@ public class SOWeapon : ScriptableObject
         BILLY,
         FLUFFY,
         POONY,
-        BOOLLY
+        BOOLLY,
+        CUTTY
     }
 
     public string name;
     public Vector2 boxSize;
     public Vector2 boxOffset;
     public int damage;
+    public float cooldown;
     public Sprite weaponSprite;
+    public Sprite weaponAttackSprite;
 
     // Start is called before the first frame update
     void Start()

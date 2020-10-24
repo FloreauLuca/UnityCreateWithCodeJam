@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Booly
   m_EditorClassIdentifier: 
   name: Booly
-  boxSize: {x: 1, y: 2}
-  boxOffset: {x: 0, y: 1}
-  damage: 50
-  weaponSprite: {fileID: 0}
+  boxSize: {x: 2.6, y: 1}
+  boxOffset: {x: 0, y: 0.67}
+  damage: 100
+  cooldown: 0.5
+  weaponSprite: {fileID: 21300000, guid: 19ed1dbd564f1a044a9889b4cd9eb0a6, type: 3}
+  weaponAttackSprite: {fileID: 21300000, guid: 5aad511021632d743b5bff0ad8cd01a7, type: 3}

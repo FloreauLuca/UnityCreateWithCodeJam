@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int life = 100;
     [SerializeField] private int damage = 5;
     [SerializeField] private float cooldown = 1.0f;
+    [SerializeField] private Sprite attackSprite;
+    private Sprite startSprite;
     private bool canAttack = false;
     private float attackTimer = 0.0f;
 
@@ -31,6 +33,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<Player>();
+        startSprite = spriteRenderer.sprite;
     }
 
     // Update is called once per frame
@@ -72,16 +75,16 @@ public class Enemy : MonoBehaviour
 
     IEnumerator HitAnim()
     {
-        spriteRenderer.color = Color.red; ;
+        spriteRenderer.color = Color.black; ;
         yield return new WaitForSeconds(0.2f);
-        spriteRenderer.color = Color.grey;
+        spriteRenderer.color = Color.white;
     }
 
     IEnumerator AttackAnim()
     {
-        spriteRenderer.color = Color.blue; ;
+        spriteRenderer.sprite = attackSprite;
         yield return new WaitForSeconds(0.2f);
-        spriteRenderer.color = Color.grey;
+        spriteRenderer.sprite = startSprite;
     }
 
     void OnTriggerEnter2D(Collider2D other) {

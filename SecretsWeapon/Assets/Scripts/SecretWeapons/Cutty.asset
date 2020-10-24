@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a58d7e92caae540a1fd73c3264d183, type: 3}
+  m_Name: Cutty
+  m_EditorClassIdentifier: 
+  name: Cutty
+  boxSize: {x: 1, y: 3.17}
+  boxOffset: {x: 0, y: 1.88}
+  damage: 100
+  cooldown: 0.5
+  weaponSprite: {fileID: 21300000, guid: d63a49d6667f5c945af28c87243f8f08, type: 3}
+  weaponAttackSprite: {fileID: 21300000, guid: 440bc787b50782f4890d108c422dbd28, type: 3}

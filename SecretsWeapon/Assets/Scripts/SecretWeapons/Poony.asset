@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a58d7e92caae540a1fd73c3264d183, type: 3}
+  m_Name: Poony
+  m_EditorClassIdentifier: 
+  name: Poony
+  boxSize: {x: 4.78, y: 3.1}
+  boxOffset: {x: 0, y: 2}
+  damage: 100
+  cooldown: 0.5
+  weaponSprite: {fileID: 21300000, guid: b42ab861907c234478d9c66353362135, type: 3}
+  weaponAttackSprite: {fileID: 21300000, guid: f4c2010565550d740ba869c5aff3b276, type: 3}
