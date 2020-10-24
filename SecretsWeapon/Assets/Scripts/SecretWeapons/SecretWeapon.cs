@@ -9,12 +9,22 @@ public class SecretWeapon : MonoBehaviour
     private bool canBeKilled;
     private bool isDead;
 
+    private bool isOpen;
+    public bool IsOpen
+    {
+        get => isOpen;
+        set => isOpen = value;
+    }
+    private int index;
+
     [SerializeField] private GameObject uiPanel;
     [SerializeField] private SOWeapon weapon;
+    private SecretWeaponsManager secretWeaponsManager;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
+        secretWeaponsManager = FindObjectOfType<SecretWeaponsManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +39,7 @@ public class SecretWeapon : MonoBehaviour
                 uiPanel.SetActive(false);
                 isDead = true;
                 GetComponentInChildren<SpriteRenderer>().color = Color.red;
+                secretWeaponsManager.Killed(index);
             }
         }
     }
@@ -49,5 +60,11 @@ public class SecretWeapon : MonoBehaviour
             canBeKilled = false;
             uiPanel.SetActive(false);
         }
+    }
+
+
+    public void SetIndex(int newIndex)
+    {
+        index = newIndex;
     }
 }
