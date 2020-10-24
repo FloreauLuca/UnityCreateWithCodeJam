@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     [Header("Mouvement")]
     private Rigidbody2D rigidbody;
     [SerializeField] private float speed = 5.0f;
+    [SerializeField] private int angleOffset;
 
     [Header("Weapon")]
-    private SecretsWeapons.Weapon currentWeapon;
+    [SerializeField] private SOWeapon currentWeapon;
+    [SerializeField] private LayerMask enemyLayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +23,15 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rigidbody.velocity = direction * speed;
-        if (Input.GetButton("Attack"))
+
+        Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + angleOffset;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (Input.GetButtonDown("Attack"))
         {
             Attack();
         }
@@ -33,11 +39,26 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Attack");
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position + currentWeapon.boxOffset.y * transform.up + currentWeapon.boxOffset.x * transform.right, currentWeapon.boxSize, transform.rotation.eulerAngles.z, enemyLayerMask);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            hitColliders[i].gameObject.GetComponent<Enemy>().Hit(currentWeapon.damage);
+            i++;
+        }
     }
 
-    public void CollectWeapon(SecretsWeapons.Weapon weapon)
+    public void CollectWeapon(SOWeapon weapon)
     {
         currentWeapon = weapon;
+    }
+
+    void OnDrawGizmos()
+    {
+        Color color;
+        color = Color.red;
+        color.a = 0.5f;
+        Gizmos.color = color;
+        Gizmos.DrawCube(transform.position + currentWeapon.boxOffset.y * transform.up + currentWeapon.boxOffset.x * transform.right, currentWeapon.boxSize);
     }
 }

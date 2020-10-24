@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class SecretsWeapons : MonoBehaviour
 {
-    public enum Weapon
-    {
-        BILLY,
-        FLUFFY,
-        POONY,
-        BOOLLY
-    }
     // Start is called before the first frame update
     void Start()
     {
