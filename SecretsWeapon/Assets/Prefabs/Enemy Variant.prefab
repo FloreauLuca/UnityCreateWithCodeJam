@@ -15,6 +15,18 @@ PrefabInstance:
       propertyPath: attackSprite
       value: 
       objectReference: {fileID: 21300000, guid: 2f3e2cbfb4e6f3a409aa7808c1b65d71, type: 3}
+    - target: {fileID: 6515692719329122393, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515692719329122393, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
+      propertyPath: life
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515692719329122393, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
+      propertyPath: cooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6515692719329122396, guid: 26bc34c0772f60a4cb60ef8eaf38f105, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.81

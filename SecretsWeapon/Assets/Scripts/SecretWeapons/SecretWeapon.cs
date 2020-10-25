@@ -20,11 +20,14 @@ public class SecretWeapon : MonoBehaviour
     [SerializeField] private GameObject uiPanel;
     [SerializeField] private SOWeapon weapon;
     private SecretWeaponsManager secretWeaponsManager;
+    [SerializeField] private GameObject killCam;
+
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
         secretWeaponsManager = FindObjectOfType<SecretWeaponsManager>();
+        killCam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,8 +43,16 @@ public class SecretWeapon : MonoBehaviour
                 isDead = true;
                 GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 secretWeaponsManager.Killed(index);
+                StartCoroutine(KillCamAnim());
             }
         }
+    }
+
+    IEnumerator KillCamAnim()
+    {
+        killCam.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        killCam.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)

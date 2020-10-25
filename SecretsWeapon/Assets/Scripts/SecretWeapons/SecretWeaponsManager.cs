@@ -6,7 +6,8 @@ public class SecretWeaponsManager : MonoBehaviour
 {
     [SerializeField] private List<SecretWeapon> secretWeapons;
     [SerializeField] private List<Doors> doors;
-
+    private int killedCount;
+    public int KilledCount => killedCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +32,6 @@ public class SecretWeaponsManager : MonoBehaviour
         {
             doors[index + 1].ForcedLocked = false;
         }
+        killedCount = index + 1;
     }
 }

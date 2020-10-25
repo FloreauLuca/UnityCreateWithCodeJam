@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<GameObject> objects;
+
+    public void Restart()
     {
-        
+        SceneManager.LoadScene("SampleScene");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Display(int killedCount)
     {
-        
+        for (int i = 0; i < killedCount; i++) {
+            objects[i].SetActive(true);
+        }
     }
 }

@@ -21,6 +21,7 @@ public class EnemiesSpawner : MonoBehaviour
     [SerializeField] private List<Wave> waves;
     [SerializeField] private Doors door;
     private List<GameObject> enemies = new List<GameObject>();
+    private bool waveStarted = false;
 
     
 
@@ -48,6 +49,10 @@ public class EnemiesSpawner : MonoBehaviour
             }
             if (allDead && door.ForcedLocked)
             {
+                if (waves.Count <= currentWaveIndex)
+                {
+                    gameManager.Win();
+                }
                 door.ForcedLocked = false;
                 door.OpenDoor();
             }
@@ -60,7 +65,7 @@ public class EnemiesSpawner : MonoBehaviour
         {
             waves[currentWaveIndex - 1].waveFinish.enabled = true;
         }
-        if (waves.Count > currentWaveIndex)
+        if (waves.Count > currentWaveIndex && !waveStarted)
         {
             StartCoroutine(LaunchWave(waves[currentWaveIndex]));
         }
@@ -68,19 +73,21 @@ public class EnemiesSpawner : MonoBehaviour
 
     IEnumerator LaunchWave(Wave wave)
     {
+        waveStarted = true;
         int currentEnemyCount = 0;
         while (currentEnemyCount < wave.totalEnnemies)
         {
             yield return new WaitForSeconds(wave.coolDown);
             for (int i = 0; i < wave.enemiesGroup; i++)
             {
-                enemies.Add(Instantiate(wave.prefab, (Vector2)wave.spawnPoint.position + Vector2.one * i, Quaternion.identity));
+                enemies.Add(Instantiate(wave.prefab, (Vector2)wave.spawnPoint.position, Quaternion.identity));
                 door.ForcedLocked = true;
                 door.CloseDoor();
                 currentEnemyCount++;
             }
         }
         currentWaveIndex++;
+        waveStarted = false;
     }
 
     void OnTriggerEnter2D(Collider2D other) {

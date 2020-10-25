@@ -8,6 +8,11 @@ public class Player : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private bool moveable = false;
+    public bool Moveable {
+        get => moveable;
+        set => moveable = value;
+    }
 
     [Header("Mouvement")]
     private Rigidbody2D rigidbody;
@@ -32,18 +37,21 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rigidbody.velocity = direction * speed;
-
-        Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + angleOffset;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        attackTimer += Time.deltaTime;
-        if (Input.GetButtonDown("Attack") && attackTimer > currentWeapon.cooldown)
+        if (moveable)
         {
-            attackTimer = 0f;
-            Attack();
-            StartCoroutine(AttackAnim());
+            Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            rigidbody.velocity = direction * speed;
+
+            Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + angleOffset;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            attackTimer += Time.deltaTime;
+            if (Input.GetButtonDown("Attack") && attackTimer > currentWeapon.cooldown)
+            {
+                attackTimer = 0f;
+                Attack();
+                StartCoroutine(AttackAnim());
+            }
         }
     }
 
@@ -73,7 +81,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            gameManager.GameOver();
+            moveable = false;
         }
     }
 
