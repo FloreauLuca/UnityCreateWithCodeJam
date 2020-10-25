@@ -51,6 +51,7 @@ public class SecretWeapon : MonoBehaviour
     IEnumerator KillCamAnim()
     {
         killCam.SetActive(true);
+        killCam.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1.0f);
         killCam.SetActive(false);
     }

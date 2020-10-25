@@ -73,6 +73,8 @@ public class EnemiesSpawner : MonoBehaviour
 
     IEnumerator LaunchWave(Wave wave)
     {
+        door.ForcedLocked = true;
+        door.CloseDoor();
         waveStarted = true;
         int currentEnemyCount = 0;
         while (currentEnemyCount < wave.totalEnnemies)
